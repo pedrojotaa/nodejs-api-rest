@@ -1,9 +1,5 @@
-const express = require('express')
+const customExpress = require('./config/customExpress')
 
-const app = express()
+const app = customExpress()
 
 app.listen(3000, ()=> console.log('Voce esta logado na porta 3000'))
-
-app.get('/musica', (req, res)=> {
-    res.send('Voce esta logado')
-})
