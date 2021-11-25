@@ -6,6 +6,8 @@ module.exports = app =>{
     })
 
     app.post('/atendimentos', (req, res)=> {
+        //imprime no console o corpo da requisição
+        console.log(req.body)
         res.send('Voce esta realizando um POST')
     })
 }
