@@ -1,4 +1,5 @@
 //faz o controle das nossas aplicações
+const Atendimentos = require('../models/atendimentos')
 
 module.exports = app =>{
     app.get('/atendimentos', (req, res)=> {
@@ -6,8 +7,9 @@ module.exports = app =>{
     })
 
     app.post('/atendimentos', (req, res)=> {
-        //imprime no console o corpo da requisição
-        console.log(req.body)
+        const atendimentos = req.body
+
+        Atendimentos.adiciona(atendimentos)
         res.send('Voce esta realizando um POST')
     })
 }
