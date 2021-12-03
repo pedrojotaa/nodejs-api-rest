@@ -1,8 +1,8 @@
 const customExpress = require('./config/customExpress')
-//referente a conexao no DB
-const conexao = require('./infra/conexao')
-//referente a criação da nossa tabela no DB
-const Tabelas = require('./infra/tabelas')
+//CONEXÃO NO BANCO DE DADOS
+const conexao = require('./database/connection')
+//CRIAÇÃO TABELAS BANCO DE DADOS
+const Tabelas = require('./database/tables')
 
 conexao.connect(erro=> {
     if(erro){
