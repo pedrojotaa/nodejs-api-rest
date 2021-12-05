@@ -43,6 +43,62 @@ class Atendimentos {
             })
         }
     }
+
+    lista(res){
+        const sql = 'select * from atendimentos'
+
+        conexao.query(sql, (erro, resultado) => {
+            if(erro){
+                res.status(404).json(erro)
+            }else{
+                res.status(200).json(resultado)
+            }
+        })
+    }
+
+    listaPorId(id, res){
+        const sql = `select * from atendimentos where id=${id}`
+
+        conexao.query(sql, (erro, resultado) => {
+            const atendimento = resultado[0]
+
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json(atendimento)
+            }
+        })
+    }
+
+    altera(id, valores, res){
+
+        if(valores.data){
+            valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+        }
+
+        const sql = 'update atendimentos set ? where id=?'
+
+        conexao.query(sql, [valores, id], (erro, resultado) => {
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json({...valores, id})
+            }
+        })
+    }
+
+    deleta(id, res){
+        const sql = 'delete from atendimentos where id=?'
+
+        conexao.query(sql, id, (erro, resposta) => {
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json({id})
+            }
+        })
+    }
+
 }
 
 module.exports = new Atendimentos
