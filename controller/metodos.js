@@ -1,7 +1,7 @@
 //faz o controle das nossas aplicações
 const Atendimentos = require('../models/atendimentos')
 
-module.exports = app =>{
+module.exports = app => {
     app.get('/atendimentos', (req, res)=> {
 
         Atendimentos.lista(res)
